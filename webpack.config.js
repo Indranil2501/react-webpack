@@ -1,13 +1,18 @@
+const port = process.env.PORT || 8080;
 const path = require('path');
 
 module.exports = {
     output: {
-        path: path.join(__dirname, '/dist'),
-        filename: 'react-webpack.bundle.js'
+        path: path.join(__dirname, '/build'),
+        filename: 'main.[fullhash].js'
     },
     devServer: {
-        port: 3010,
-        watchContentBase: true
+        host: "localhost",
+        port: port,
+        historyApiFallback: true,
+        // static: path.resolve(__dirname, 'src'),
+        open: true,
+        // hot: true
     },
     module: {
         rules:[
@@ -18,14 +23,14 @@ module.exports = {
                     loader: 'babel-loader'
                 }
             },
-            {
-                test: /\.scss$/,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    'sass-loader'
-                ]
-            }
+            // {
+            //     test: /\.scss$/,
+            //     use: [
+            //         'style-loader',
+            //         'css-loader',
+            //         'sass-loader'
+            //     ]
+            // }
         ]
     }
 }
